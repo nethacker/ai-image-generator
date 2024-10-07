@@ -2,17 +2,16 @@ import io, os, base64, json, random
 import boto3
 from PIL import Image
 
-AI_S3_BUCKET_NAME = "tiled-genai"
+AI_S3_BUCKET_NAME = "YOUR_S3_BUCKET_NAME_HERE"
 AI_IMAGE_GENERATOR_TMP_PATH = "/tmp/ai_image_generator/"
 NEGATIVE_PROMPTS = "poorly rendered, poor background details"
 
-# Set AI Image Generation Settings
+# Set Titan generative AI image generation settings.
 def ai_image_settings(prompt):
 
-    # Unique AI Image Random Seed Generation
+    # Unique AI image random seed generation.
     random_seed = random.randint(0,2147833647)
 
-    # Amazon Titan Generative AI Image Settings
     body = {
                 "taskType": "TEXT_IMAGE",
                 "textToImageParams": {
@@ -32,10 +31,10 @@ def ai_image_settings(prompt):
     json_string = json.dumps(body, indent=4)
     return json_string
 
-# AI Image Generation and Storage
+# AI Image generation and storage.
 def ai_image_generation(prompt, local_file_name, output_folder):
 
-    # Invoke Amazon Titan Image Generator v2
+    # Invoke Amazon Titan image generator v2.
     boto3_bedrock = boto3.client('bedrock-runtime', region_name='us-east-1')
     ai_model = boto3_bedrock.invoke_model(
         body=ai_image_settings(prompt),
@@ -44,11 +43,11 @@ def ai_image_generation(prompt, local_file_name, output_folder):
         contentType="application/json"
     )
 
-    # Process the AI Image
+    # Process the AI image Base64.
     response_body = json.loads(ai_model.get("body").read())
     image_base64 = response_body["images"][0]
 
-    # Decode Base64 Bytes and Save Image
+    # Decode Base64 bytes and save image.
     ai_image = Image.open(
         io.BytesIO(
             base64.decodebytes(
@@ -59,17 +58,17 @@ def ai_image_generation(prompt, local_file_name, output_folder):
 
     ai_image.save(f"{AI_IMAGE_GENERATOR_TMP_PATH}/{output_folder}/{local_file_name}")
 
-    # Store images in S3
+    # Store images in S3.
     s3 = boto3.client('s3')
     bucket = AI_S3_BUCKET_NAME
     file_name = (f"{AI_IMAGE_GENERATOR_TMP_PATH}/{output_folder}/{local_file_name}")
     key_name = os.path.join(output_folder, local_file_name)
     s3.upload_file(file_name, bucket, key_name, ExtraArgs={'ContentType': "image/png"})
 
-    # Delete Temporary Local Copy
+    # Delete temporary local copy.
     os.remove(f"{AI_IMAGE_GENERATOR_TMP_PATH}/{output_folder}/{local_file_name}")
 
-# Local Cleanup Function
+# Local cleanup function.
 def delete_files_in_directory(directory_path, rm_dir=False):
     try:
         files = os.listdir(directory_path)
@@ -81,6 +80,6 @@ def delete_files_in_directory(directory_path, rm_dir=False):
         if (rm_dir):
             os.rmdir(directory_path)
 
-        print("All files deleted successfully.")
+        print("All image files deleted successfully.")
     except OSError:
-        print("Error occurred while deleting files.")
+        print("Error occurred while deleting image files.")
