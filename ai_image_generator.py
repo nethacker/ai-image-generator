@@ -1,6 +1,5 @@
 import os
 import json
-import random
 import time
 import concurrent.futures
 from flask import Flask, request
