@@ -1,6 +1,7 @@
-import os, json, random
+import os
+import json
+import random
 import concurrent.futures
-import boto3
 from flask import Flask, request
 from flask_json import FlaskJSON, JsonError, json_response
 from image_generation import ai_image_generation, delete_files_in_directory
@@ -17,18 +18,17 @@ ai_image_generator.config['MAX_CONTENT_PATH'] = 500 * 1024 * 1024
 def ai_image_generator_data_validation(request_data):
     try:
         prompt = str(request_data['prompt'])
-    except (KeyError, TypeError, ValueError):
-        raise JsonError(description='Invalid prompt.')
-
+    except (KeyError, TypeError, ValueError) as e:
+        raise JsonError(description='Invalid prompt.') from e
     try:
         output_folder = str(request_data['output_folder'])
-    except (KeyError, TypeError, ValueError):
-        raise JsonError(description='Invalid output_folder.')
+    except (KeyError, TypeError, ValueError) as e:
+        raise JsonError(description='Invalid output_folder.') from e
 
     try:
         file_name_prefix = str(request_data['file_name_prefix'])
-    except (KeyError, TypeError, ValueError):
-        raise JsonError(description='Invalid file_name_prefix.')
+    except (KeyError, TypeError, ValueError) as e:
+        raise JsonError(description='Invalid file_name_prefix.') from e
 
     return prompt, output_folder, file_name_prefix
 
@@ -59,8 +59,6 @@ def generate_images():
         for file in file_name:
             futures.append(executor.submit(ai_image_generation, prompt=prompt, local_file_name=file, output_folder=output_folder))
         for future in concurrent.futures.as_completed(futures):
-
-            result = future.result()
 
     # Return JSON output of location/files generated.
     keys = []

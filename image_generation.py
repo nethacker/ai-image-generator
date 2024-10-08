@@ -1,4 +1,8 @@
-import io, os, base64, json, random
+import io
+import os
+import base64
+import json
+import random
 import boto3
 from PIL import Image
 
