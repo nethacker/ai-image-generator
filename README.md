@@ -6,27 +6,23 @@
 
 ### Description
 
-This repo provides an example of an AI Image Generator API that creates 4 images asynchronously and stores them in <a href="https://aws.amazon.com/s3/" target="_blank">S3</a>. The API leverages Amazon Titan Image Generator which is accessed via <a href="https://aws.amazon.com/bedrock/" target="_blank">Amazon Bedrock</a>. Generating the images asyncronously allows for a quicker experience when processing multiple images.
+This repo provides an example of an AI Image Generator API that creates asynchronously 4 unique images based on your prompt  and stores them in <a href="https://aws.amazon.com/s3/" target="_blank">S3</a>. The API leverages Amazon Titan Image Generator which is accessed via <a href="https://aws.amazon.com/bedrock/" target="_blank">Amazon Bedrock</a>. Generating the images asyncronously allows for a quicker experience when processing multiple images.
 
-The workflow is:
+The API workflow:
 
-1. Create a execute a POST request to the `generate_images` endpoint, that has `prompt`, `output_folder` and `file_name_prefix`.
+1. Create a **POST** request to the `generate_images` endpoint, that has `prompt`, `output_folder` and `file_name_prefix`.
     1. `prompt` is the description of the image you want generated.
     2. `output_folder` is the S3 folder path structure.
     3. `file_name_prefix` is the name of the image file which will end up with a random string of numbers appended to it.
-    4. Example POST request BODY: `{"prompt": "red porsche", "output_folder": "000/111", "file_name_prefix": "porsche_image"}`
-2. 4 images will be generated based on your prompt and uploaded to the S3 bucket you specify in `image_generation.py` under `AI_S3_BUCKET_NAME`
+    4. Example **POST** request **BODY**: `{"prompt": "red porsche", "output_folder": "000/111", "file_name_prefix": "porsche_image"}`
+2. 4 unique images will be generated based on your prompt and uploaded to the S3 bucket you specify in `image_generation.py` under `AI_S3_BUCKET_NAME`
 3. You will get a JSON manifest of file names after the images are generated.
     1. Example response: `{"images": ["000/111/porsche_image-1195732086.png", "000/111/porsche_image-1182855275.png", "000/111/porsche_image-1597191391.png", "000/111/porsche_image-181944233.png"]}`
-
-<p align="center">
-<img src="flow-diagram.svg" alt="AI Image Generator API Process Flow" />
-</p>
 
 ### Prerequisites for macOS laptop local setup
 
 * <a href="https://aws.amazon.com" target="_blank"> Amazon Web Services Account</a>
-* Enable Amazon Bedrock Access (Specifically Amazon Titan Embeddings and Claude 3.5 Sonnet) see: <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html" target="_blank">Manage access to Amazon Bedrock foundation models</a>
+* Enable Amazon Bedrock Access (Specifically Amazon Titan Image Generator v2) see: <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html" target="_blank">Manage access to Amazon Bedrock foundation models</a>
 * AWS CLI <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html" target="_blank">installed</a>
 * AWS CLI IAM user with Full Amazon Bedrock Access and Full Amazon S3 Access
 * Verified on Python 3.10, 3.11, 3.12
@@ -41,7 +37,7 @@ The workflow is:
 * Verified on EC2 Instance Ubuntu 22.04 and Ubuntu 24.04
 * Verified on Python 3.10, 3.11, 3.12
 * Virtualenv
-* AWS Default Region is set to us-east-1 you can change the region in the `image_generation.py` file under `region_name='us-east-1'
+* AWS Default Region is set to us-east-1 you can change the region in the `image_generation.py` file under `region_name='us-east-1'`
 * AWS S3 bucket
 
 ### AWS Resource Cost
@@ -83,6 +79,7 @@ From a command line you can test the API out by running:
 
 `curl -X POST --data '{"prompt": "red porsche", "output_folder": "000/111"}' http://127.0.0.1:8080/generate_images`
 
+You should see 4 new images in the S3 bucket you set.
 
 ### EC2 Ubuntu instance setup steps
 (This example assumes you have a ubuntu user with /home/ubuntu)
