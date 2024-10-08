@@ -13,11 +13,11 @@ The API workflow:
 1. Create a **POST** request to the `generate_images` endpoint, that has `prompt`, `output_folder` and `file_name_prefix`.
     1. `prompt` is the description of the image you want generated.
     2. `output_folder` is the S3 folder path structure.
-    3. `file_name_prefix` is the name of the image file which will end up with a random string of numbers appended to it.
+    3. `file_name_prefix` is the name of the image file which will end up with a Unix epoch time appended to it.
     4. Example **POST** request **BODY**: `{"prompt": "red porsche", "output_folder": "000/111", "file_name_prefix": "porsche_image"}`
 2. 4 unique images will be generated based on your prompt and uploaded to the S3 bucket you specify in `image_generation.py` under `AI_S3_BUCKET_NAME`
 3. You will get a JSON manifest of file names after the images are generated.
-    1. Example response: `{"images": ["000/111/porsche_image-1195732086.png", "000/111/porsche_image-1182855275.png", "000/111/porsche_image-1597191391.png", "000/111/porsche_image-181944233.png"]}`
+    1. Example response: `{"images": ["000/111/porsche_image-1728409676.376359.png", "000/111/porsche_image-1728409676.376369.png", "000/111/porsche_image-1728409676.376371.png", "000/111/porsche_image-1728409676.3763719.png"]}`
 
 ### Prerequisites for macOS laptop local setup
 

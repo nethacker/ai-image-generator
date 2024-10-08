@@ -1,6 +1,7 @@
 import os
 import json
 import random
+import time
 import concurrent.futures
 from flask import Flask, request
 from flask_json import FlaskJSON, JsonError, json_response
@@ -55,7 +56,7 @@ def generate_images():
     with concurrent.futures.ThreadPoolExecutor() as executor:
         futures = []
 
-        file_name = [(f"{file_name_prefix}") + "-" + str(random.randint(0,2000000000)) + ".png", (f"{file_name_prefix}") + "-" + str(random.randint(0,2000000000)) + ".png", (f"{file_name_prefix}") + "-" + str(random.randint(0,2000000000)) + ".png", (f"{file_name_prefix}") + "-" + str(random.randint(0,2000000000)) + ".png"]
+        file_name = [(f"{file_name_prefix}") + "-" + str(time.time()) + ".png", (f"{file_name_prefix}") + "-" + str(time.time()) + ".png", (f"{file_name_prefix}") + "-" + str(time.time()) + ".png", (f"{file_name_prefix}") + "-" + str(time.time()) + ".png"]
         for file in file_name:
             futures.append(executor.submit(ai_image_generation, prompt=prompt, local_file_name=file, output_folder=output_folder))
         for future in concurrent.futures.as_completed(futures):
