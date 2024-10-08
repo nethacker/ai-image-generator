@@ -59,6 +59,7 @@ def generate_images():
         for file in file_name:
             futures.append(executor.submit(ai_image_generation, prompt=prompt, local_file_name=file, output_folder=output_folder))
         for future in concurrent.futures.as_completed(futures):
+            print(future.result())
 
     # Return JSON output of location/files generated.
     keys = []
