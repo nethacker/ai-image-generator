@@ -5,3 +5,5 @@ watchdog
 requests
 flask
 flask-json
+gunicorn
+setproctitle
