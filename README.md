@@ -1,4 +1,3 @@
-# ai-image-generator
 [![Pylint](https://github.com/nethacker/ai-image-generator/actions/workflows/pylint.yml/badge.svg)](https://github.com/nethacker/ai-image-generator/actions/workflows/pylint.yml)
 # Asynchronous AI Image Generator API Service
 * License: (MIT), Copyright (C) 2024, Author Phil Chen
