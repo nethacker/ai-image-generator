@@ -51,7 +51,7 @@ As with most AWS services you will incur costs for usage.
   * https://aws.amazon.com/bedrock/pricing/
   * https://aws.amazon.com/ec2/pricing/on-demand/
 
-#### macOS laptop local setup
+#### macOS laptop local development setup
 
 ```
 conda create -n "ai-image-generator" python=3.11.0
