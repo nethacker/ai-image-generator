@@ -52,17 +52,22 @@ As with most AWS services you will incur costs for usage.
 ```
 conda create -n "ai-image-generator" python=3.11.0
 
+conda activate ai-image-generator
+
 git clone git@github.com:nethacker/ai-image-generator.git
 
 cd ai-image-generator
 
 pip install -r requirements.txt
+```
 
+### Add your S3 bucket destination
+
+```
 vim image_generation.py
 ```
 
-Edit the line `AI_S3_BUCKET_NAME` and add your S3 bucket name
-
+In `image_generation.py` change `YOUR_S3_BUCKET_NAME_HERE` at `AI_S3_BUCKET_NAME` to your chosen S3 bucket. 
 
 #### Run macOS laptop local setup
 
@@ -125,7 +130,7 @@ pip install -r requirements.txt
 vim image_generation.py
 ```
 
-Change `YOUR_S3_BUCKET_NAME_HERE` in `AI_S3_BUCKET_NAME` to your S3 bucket 
+In `image_generation.py` change `YOUR_S3_BUCKET_NAME_HERE` at `AI_S3_BUCKET_NAME` to your chosen S3 bucket. 
 
 #### Setup systemd to daemonize and bootstrap the AI Image Generator API service (Port 8080)
 ```
