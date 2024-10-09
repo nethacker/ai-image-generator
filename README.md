@@ -51,7 +51,7 @@ As with most AWS services you will incur costs for usage.
   * https://aws.amazon.com/bedrock/pricing/
   * https://aws.amazon.com/ec2/pricing/on-demand/
 
-#### macOS laptop local development setup
+### macOS laptop local development setup
 
 ```
 conda create -n "ai-image-generator" python=3.11.0
@@ -65,7 +65,7 @@ cd ai-image-generator
 pip install -r requirements.txt
 ```
 
-### Add your S3 bucket destination
+#### Add your S3 bucket destination
 
 ```
 vim image_generation.py
@@ -128,7 +128,7 @@ cd /home/ubuntu/ai-image-generator
 pip install -r requirements.txt
 ```
 
-### Add your S3 bucket destination
+#### Add your S3 bucket destination
 
 ```
 vim image_generation.py
