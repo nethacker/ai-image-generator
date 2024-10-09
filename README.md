@@ -120,6 +120,14 @@ cd /home/ubuntu/ai-image-generator
 pip install -r requirements.txt
 ```
 
+### Add your S3 bucket destination
+
+```
+vim image_generation.py
+```
+
+Change `YOUR_S3_BUCKET_NAME_HERE` in `AI_S3_BUCKET_NAME` to your S3 bucket 
+
 #### Setup systemd to daemonize and bootstrap the AI Image Generator API service (Port 8080)
 ```
 sudo cp systemd/ai-image-generator.service /etc/systemd/system/
