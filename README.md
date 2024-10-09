@@ -16,7 +16,7 @@ This repo provides an example of an AI Image Generator API that creates asynchro
     4. Example **POST** request **BODY**: `{"prompt": "red porsche", "output_folder": "000/111", "file_name_prefix": "porsche_image"}`
 2. 4 unique images will be generated based on your prompt and uploaded to the S3 bucket you specify in `image_generation.py` under `AI_S3_BUCKET_NAME`
 3. You will get a JSON manifest of file names after the images are generated.
-    1. Example response: `{"images": ["000/111/porsche_image-1728409676.376359.png", "000/111/porsche_image-1728409676.376369.png", "000/111/porsche_image-1728409676.376371.png", "000/111/porsche_image-1728409676.3763719.png"]}`
+    1. Example response: ```{"images": ["000/111/porsche_image-1728409676.376359.png", "000/111/porsche_image-1728409676.376369.png", "000/111/porsche_image-1728409676.376371.png", "000/111/porsche_image-1728409676.3763719.png"]}```
 
 <p align="center">
 <img src="ai-image-generator.svg" alt="AI Image Generator API Process Flow" />
