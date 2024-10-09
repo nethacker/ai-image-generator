@@ -1,0 +1,13 @@
+[Unit]
+Description=AI Image Generator API
+After=network.target
+ 
+[Service]
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/ai-image-generator
+Environment="PATH=/home/ubuntu/ai-image-generator_env/bin"
+ExecStart=/home/ubuntu/ai-image-generator_env/bin/gunicorn --config=gunicorn/gunicorn_ai-image-generator.conf wsgi:ai_image_generator
+ 
+[Install]
+WantedBy=multi-user.target
