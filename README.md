@@ -7,7 +7,7 @@
 
 This repo provides an example of an AI Image Generator API that creates asynchronously 4 unique images based on your prompt  and stores them in <a href="https://aws.amazon.com/s3/" target="_blank">S3</a>. The API leverages Amazon Titan Image Generator which is accessed via <a href="https://aws.amazon.com/bedrock/" target="_blank">Amazon Bedrock</a>. Generating the images asyncronously allows for a quicker experience when processing multiple images.
 
-** The API workflow: **
+**The API workflow:**
 
 1. Create a **POST** request to the `generate_images` endpoint, that has `prompt`, `output_folder` and `file_name_prefix`.
     1. `prompt` is the description of the image you want generated.
