@@ -22,7 +22,7 @@ This repo provides an example of an AI Image Generator API that creates asynchro
 <img src="ai-image-generator.svg" alt="AI Image Generator API Process Flow" />
 </p>
 
-### Prerequisites for macOS laptop local setup
+### Prerequisites for macOS laptop local development setup
 
 * <a href="https://aws.amazon.com" target="_blank"> Amazon Web Services Account</a>
 * Enable Amazon Bedrock Access (Specifically Amazon Titan Image Generator v2) see: <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html" target="_blank">Manage access to Amazon Bedrock foundation models</a>
@@ -73,7 +73,7 @@ vim image_generation.py
 
 In `image_generation.py` change `YOUR_S3_BUCKET_NAME_HERE` at `AI_S3_BUCKET_NAME` to your chosen S3 bucket. 
 
-#### Run macOS laptop local setup
+#### Run macOS laptop local development setup
 
 To run AI Image Generator API Service
 
