@@ -18,6 +18,10 @@ This repo provides an example of an AI Image Generator API that creates asynchro
 3. You will get a JSON manifest of file names after the images are generated.
     1. Example response: `{"images": ["000/111/porsche_image-1728409676.376359.png", "000/111/porsche_image-1728409676.376369.png", "000/111/porsche_image-1728409676.376371.png", "000/111/porsche_image-1728409676.3763719.png"]}`
 
+<p align="center">
+<img src="ai_image_generator.svg" alt="PDF Query RAG-Based LLM GenAI Web Application Process Flow" />
+</p>
+
 ### Prerequisites for macOS laptop local setup
 
 * <a href="https://aws.amazon.com" target="_blank"> Amazon Web Services Account</a>
