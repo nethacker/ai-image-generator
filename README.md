@@ -17,10 +17,10 @@ This repo provides an example of an AI Image Generator API that creates asynchro
     * `prompt` is the description of the image you want generated.
     * `output_folder` is the S3 folder path structure.
     * `file_name_prefix` is the name of the image file which will end up with a Unix epoch time appended to it.
-    Example **POST** request **BODY**: `{"prompt": "red porsche", "output_folder": "000/111", "file_name_prefix": "porsche_image"}`
-2. 4 unique images will be generated based on your prompt and uploaded to the S3 bucket you specify in `image_generation.py` under `AI_S3_BUCKET_NAME`
+    * Example **POST** request **BODY**: `{"prompt": "red porsche", "output_folder": "000/111", "file_name_prefix": "porsche_image"}`
+2. Four unique images will be generated based on your prompt and uploaded to the S3 bucket you specify in `image_generation.py` under `AI_S3_BUCKET_NAME`
 3. You will get a JSON manifest of file names after the images are generated.
-    Example response: ```{"images": ["000/111/porsche_image-1728409676.376359.png", "000/111/porsche_image-1728409676.376369.png", "000/111/porsche_image-1728409676.376371.png", "000/111/porsche_image-1728409676.3763719.png"]}```
+    * Example response: ```{"images": ["000/111/porsche_image-1728409676.376359.png", "000/111/porsche_image-1728409676.376369.png", "000/111/porsche_image-1728409676.376371.png", "000/111/porsche_image-1728409676.3763719.png"]}```
 
 ### Prerequisites for macOS laptop local development setup
 
