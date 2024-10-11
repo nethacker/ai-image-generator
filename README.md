@@ -7,20 +7,20 @@
 
 This repo provides an example of an AI Image Generator API that creates asynchronously 4 unique images based on your prompt  and stores them in <a href="https://aws.amazon.com/s3/" target="_blank">S3</a>. The API leverages Amazon Titan Image Generator which is accessed via <a href="https://aws.amazon.com/bedrock/" target="_blank">Amazon Bedrock</a>. Generating the images asyncronously allows for a quicker experience when processing multiple images.
 
-**The API workflow:**
-
-1. Create a **POST** request to the `generate_images` endpoint, that has `prompt`, `output_folder` and `file_name_prefix`.
-    1. `prompt` is the description of the image you want generated.
-    2. `output_folder` is the S3 folder path structure.
-    3. `file_name_prefix` is the name of the image file which will end up with a Unix epoch time appended to it.
-    4. Example **POST** request **BODY**: `{"prompt": "red porsche", "output_folder": "000/111", "file_name_prefix": "porsche_image"}`
-2. 4 unique images will be generated based on your prompt and uploaded to the S3 bucket you specify in `image_generation.py` under `AI_S3_BUCKET_NAME`
-3. You will get a JSON manifest of file names after the images are generated.
-    1. Example response: ```{"images": ["000/111/porsche_image-1728409676.376359.png", "000/111/porsche_image-1728409676.376369.png", "000/111/porsche_image-1728409676.376371.png", "000/111/porsche_image-1728409676.3763719.png"]}```
-
 <p align="center">
 <img src="ai-image-generator.svg" alt="AI Image Generator API Process Flow" />
 </p>
+
+**The API Overview:**
+
+1. Create a **POST** request to the `generate_images` endpoint, that has `prompt`, `output_folder` and `file_name_prefix`.
+    * `prompt` is the description of the image you want generated.
+    * `output_folder` is the S3 folder path structure.
+    * `file_name_prefix` is the name of the image file which will end up with a Unix epoch time appended to it.
+    Example **POST** request **BODY**: `{"prompt": "red porsche", "output_folder": "000/111", "file_name_prefix": "porsche_image"}`
+2. 4 unique images will be generated based on your prompt and uploaded to the S3 bucket you specify in `image_generation.py` under `AI_S3_BUCKET_NAME`
+3. You will get a JSON manifest of file names after the images are generated.
+    Example response: ```{"images": ["000/111/porsche_image-1728409676.376359.png", "000/111/porsche_image-1728409676.376369.png", "000/111/porsche_image-1728409676.376371.png", "000/111/porsche_image-1728409676.3763719.png"]}```
 
 ### Prerequisites for macOS laptop local development setup
 
@@ -160,7 +160,7 @@ You can reach the API at `http://{yourhost}`.
 
 From a command line you can test the API out by running:
 
-`curl -X POST --data '{"prompt": "red porsche", "output_folder": "000/111"}' http://{yourhost}:80/generate_images`
+`curl -X POST --data '{"prompt": "red porsche", "output_folder": "000/111", "file_name_prefix": "porsche_image"}' http://{yourhost}:80/generate_images`
 
 ### Notes
 
